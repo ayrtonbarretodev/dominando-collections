@@ -1,6 +1,7 @@
 package br.com.ayrton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Curso {
@@ -22,6 +23,11 @@ public class Curso {
     }
 
     public List<Aula> getAulas() {
-        return aulas;
+        //devolve uma cópia de tal forma que ela não possa ser alterada diretamente pelo atributo
+        return Collections.unmodifiableList(aulas);
+    }
+
+    public void adiciona (Aula a){
+        this.aulas.add(a);
     }
 }
