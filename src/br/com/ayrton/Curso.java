@@ -8,6 +8,7 @@ public class Curso {
     private String nome;
     private String instrutor;
     private List<Aula> aulas = new ArrayList<>();
+    private int tTotal;
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -23,11 +24,32 @@ public class Curso {
     }
 
     public List<Aula> getAulas() {
-        //devolve uma cópia de tal forma que ela não possa ser alterada diretamente pelo atributo
+        //devolve uma lista na qual não é possível fazer alterações, como apagar ou até mesmo adicionar na lista.
         return Collections.unmodifiableList(aulas);
     }
 
-    public void adiciona (Aula a){
+    public int gettTotal() {
+        return tTotal;
+    }
+
+    public void adiciona(Aula a) {
         this.aulas.add(a);
+        tTotal += a.getTempo();
+    }
+
+    public int getTempoTotal() {
+        int tempoTotal = 0;
+        for (Aula aula : aulas) {
+            tempoTotal += aula.getTempo();
+        }
+        return tempoTotal;
+
+        //outra forma - Java 8
+        //return this.aulas.stream().mapToInt(Aula::getTempo).sum();
+    }
+
+    @Override
+    public String toString() {
+        return "[Curso: " + nome + ", tempo total: " + tTotal + "]";
     }
 }
