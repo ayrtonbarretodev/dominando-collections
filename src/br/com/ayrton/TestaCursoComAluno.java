@@ -1,5 +1,8 @@
 package br.com.ayrton;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class TestaCursoComAluno {
     public static void main(String[] args) {
         Curso javaColecoes = new Curso("Dominando as coleções do Java", "Paulo Silveira");
@@ -44,6 +47,11 @@ public class TestaCursoComAluno {
         System.out.println("Obrigatoriamente o seguinte é true: ");
         System.out.println(a1.hashCode() == turini.hashCode());
 
+        Set<Aluno> alunos = javaColecoes.getAlunos();
+        Iterator<Aluno> iterador = alunos.iterator();
 
+        while (iterador.hasNext()){ //verifica se tem próximo elemento
+            System.out.println(iterador.next());
+        }
     }
 }
