@@ -1,14 +1,13 @@
 package br.com.ayrton;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Curso {
     private String nome;
     private String instrutor;
     private List<Aula> aulas = new ArrayList<>();
     private int tTotal;
+    private Set<Aluno> alunos = new HashSet<>();
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -28,6 +27,10 @@ public class Curso {
         return Collections.unmodifiableList(aulas);
     }
 
+    public Set<Aluno> getAlunos() {
+        return Collections.unmodifiableSet(alunos);
+    }
+
     public int gettTotal() {
         return tTotal;
     }
@@ -36,6 +39,11 @@ public class Curso {
         this.aulas.add(a);
         tTotal += a.getTempo();
     }
+
+    public void matricula(Aluno a) {
+        this.alunos.add(a);
+    }
+
 
     public int getTempoTotal() {
         int tempoTotal = 0;
@@ -46,6 +54,10 @@ public class Curso {
 
         //outra forma - Java 8
         //return this.aulas.stream().mapToInt(Aula::getTempo).sum();
+    }
+
+    public boolean estaMatriculado(Aluno a) {
+        return this.alunos.contains(a);
     }
 
     @Override
