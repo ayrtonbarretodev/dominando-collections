@@ -40,9 +40,10 @@ public class Curso {
         tTotal += a.getTempo();
     }
 
-    public void matricula(Aluno a){
+    public void matricula(Aluno a) {
         this.alunos.add(a);
     }
+
 
     public int getTempoTotal() {
         int tempoTotal = 0;
@@ -53,6 +54,10 @@ public class Curso {
 
         //outra forma - Java 8
         //return this.aulas.stream().mapToInt(Aula::getTempo).sum();
+    }
+
+    public boolean estaMatriculado(Aluno a) {
+        return this.alunos.contains(a);
     }
 
     @Override
